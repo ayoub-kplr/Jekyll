@@ -126,7 +126,7 @@ for(var files=[{% for url in site.static_files %}'{{ url.path | replace: "'", "\
           el.setAttribute("ref",y+"-"+url[y]),
           el.setAttribute("level",y),
           el.setAttribute("id",type),
-          el.setAttribute("class","collapsible"),
+          (type=="folder")?el.setAttribute("class","collapsible"):null,
           parent?
             parent.appendChild(el):
             c.appendChild(el)
