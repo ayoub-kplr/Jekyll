@@ -121,7 +121,7 @@ for(var files=[{% for url in site.static_files %}'{{ url.path | replace: "'", "\
           el=document.createElement("li");
           var a=document.createElement("a");
           a.innerHTML=escapeHtml(url[y].split(".")[0]),
-          a.href=url.slice(0,x+1).join("/"),
+          a.href=type="file"?url.slice(0,x+1).join("/"):"",
           el.appendChild(a),
           el.setAttribute("ref",y+"-"+url[y]),
           el.setAttribute("level",y),
