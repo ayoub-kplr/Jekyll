@@ -144,7 +144,7 @@ var i;
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
-    var nextSiblings = coll[i].nextAll();
+    var nextSiblings = coll[i].parentNode.childNodes.slice(1);
     for(var j=0;j<nextSiblings.length;j++){
       var content = nextSiblings[j]; //this.nextElementSibling;
       if (content.style.display === "block") {
