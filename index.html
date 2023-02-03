@@ -31,19 +31,19 @@ layout: default
     overflow-y:auto;
     overflow-x:hidden
   }
-  .folder>a:nth-child(1){
+  #folder>a:nth-child(1){
     height:15px;
     display:inline-block;
   }
-  .folder>a:nth-child(1):hover{
+  #folder>a:nth-child(1):hover{
     text-decoration:underline;
     text-decoration-color:#ff1959
   }
-  .file{
+  #file{
     position:relative;
     height:50px
   }
-  .file a{
+  #file a{
     position:absolute;
     display:inline-block;
     height:calc(100% - 20px);
@@ -57,7 +57,7 @@ layout: default
     transition:background-color .5s ease;
     color:#ff6892
   }
-  .file:hover a{
+  #file:hover a{
     background-color:rgba(255,255,255,.1)
   }
   ul,ul.tree ul{
@@ -125,7 +125,8 @@ for(var files=[{% for url in site.static_files %}'{{ url.path | replace: "'", "\
           el.appendChild(a),
           el.setAttribute("ref",y+"-"+url[y]),
           el.setAttribute("level",y),
-          el.setAttribute("class",type),
+          el.setAttribute("id",type),
+          el.setAttribute("class","collapsible"),
           parent?
             parent.appendChild(el):
             c.appendChild(el)
@@ -135,5 +136,20 @@ for(var files=[{% for url in site.static_files %}'{{ url.path | replace: "'", "\
   }
     //console.groupEnd(files[i])
 }
-document.title=document.querySelector("h1").innerHTML+=" ("+files.length+" items)";
+//document.title=document.querySelector("h1").innerHTML+=" ("+files.length+" items)";
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
 </script>
