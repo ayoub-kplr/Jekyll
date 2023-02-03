@@ -93,13 +93,6 @@ layout: default
   ul li:last-child:before{
     border-left:1px solid #ff1959
   }
-  .collapsible {
-    display: none;
-  }
-
-  .active {
-    display: block!important;
-  }
   
 </style>
 <ul></ul>
@@ -115,7 +108,9 @@ function escapeHtml(e){
   }
 for(var files=[
   {% for url in site.static_files %} 
+  {% if url.extname == '.html' %}
   '{{ url.path | replace: "'", "\'" }}',
+  {% endif %}
   {% endfor %}]
   ,i=0;i<files.length;i++)
 {
