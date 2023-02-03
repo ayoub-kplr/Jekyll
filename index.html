@@ -33,7 +33,7 @@ layout: default
   }
   .folder>a:nth-child(1){
     height:15px;
-    display:inline-block
+    display:inline-block;
   }
   .folder>a:nth-child(1):hover{
     text-decoration:underline;
@@ -120,10 +120,10 @@ for(var files=[{% for url in site.static_files %}'{{ url.path | replace: "'", "\
           url[y].indexOf(".")>-1 && (type="file"),
           el=document.createElement("li");
           var a=document.createElement("a");
-          a.innerHTML=escapeHtml(url[y]),
+          a.innerHTML=escapeHtml(url[y].split(".")[0]),
           a.href=url.slice(0,x+1).join("/"),
-          el.appendChild(a)
-          ,el.setAttribute("ref",y+"-"+url[y]),
+          el.appendChild(a),
+          el.setAttribute("ref",y+"-"+url[y]),
           el.setAttribute("level",y),
           el.setAttribute("class",type),
           parent?
