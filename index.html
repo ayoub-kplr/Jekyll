@@ -106,7 +106,7 @@ function escapeHtml(e){
   .replace(/"/g,"&quot;")
   .replace(/'/g,"&#039;");
   }
-for(var files=[{% for url in site.static_files %}{% if file.extname == '.html' %} '{{ url.path | replace: "'", "\'" }}'{% endif %},{% endfor %}],i=0;i<files.length;i++)
+for(var files=[{% for url in site.static_files %} '{{ url.path | replace: "'", "\'" }}',{% endfor %}],i=0;i<files.length;i++)
 {
   var url=files[i].split("/").slice(1);
   // console.group(files[i]);
